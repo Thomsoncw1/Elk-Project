@@ -24,14 +24,15 @@ This document contains the following details:
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
 #### Loadbalancer: 
-Load balancing ensures that the application will be highly available, in addition to restricting public accessability to the network. A load balancer,configured with health probes and load balancing rules ensures and directs traffic only to healthy instances. A load balancer when configured properly can help  to mitigate a DDoS attack.  
+Load balancing ensures that the application will be highly available, in addition to restricting public accessability to the network. A load balancer, when configured with health probes and load balancing rules ensures and directs traffic only to healthy instances. A load balancer when configured properly can help  to mitigate a DDoS attack. 
+
 #### JumpBox:
 The main purpose of a jumpbox is to isolate private resources from public access. A Jumpbox normally has high security rules implemented.  This is because to access the private resources, in this case two Virtual Machines (VM's), an user  would  access the JumpBox via the public IP and from within access the private VMs. 
 
 #### ELK Server:
  Elasticsearch, Logstash, Kibana (ELK) are open source utilities for various purposes.  They are use to conver, compile and visualize data. ELK servers utilize beats.  Beats are open source carriers that are installed on the ELK server to collect and send data for an user to analyze.   For this project, Metricbeats and Filebeats were used to monitor and capture data to analyze.  
  - Metricbeat:  Used to capture  various system and service metrics such as CPU usage and memory  
-- Filebeat: Used to capture log data from different systems and forwards them to the ELK server for analysis
+ - Filebeat: Used to capture log data from different systems and forwards them to the ELK server for analysis
 
 
 #### Network Configurations:
@@ -40,7 +41,8 @@ The configuration details of each machine may be found below.
 
 | Name      | Function  | IP Address | Operating System |
 |---------- |---------- |------------|------------------|
-| JumpBox   | Gateway   | 10.0.0.4   |Ubuntu 18.0.4 LTS|
+| JumpBox   | Gateway   | 10.0.0.4   |Ubuntu 18.0.4 LTS |
+| Loadbalancer | Load Balancer | | N/A | 
 | Web 1     | Web Server| 10.0.0.5   |Ubuntu 18.0.4 LTS |
 | Web 2     | Web Server| 10.1.0.7   |Ubuntu 18.0.4 LTS | 
 | ELK       | ELK Stack | 10.2.0.4   |Ubuntu 18.0.4 LTS |
