@@ -49,9 +49,11 @@ The configuration details of each machine may be found below.
 
 ### Access Policies
 
-The machines on the internal network are not exposed to the public Internet. Only the JumpBox machine can accept connections from the Internet. Access to the JumpBox machine is only allowed from the admins local machine. The web application and Kibana dashboard is accessed through the load balancers public IP DNS name. 
+The machines on the internal network are not exposed to the public Internet. 
 
-Machines within the network can only be accessed by the JumpBox machine. The admin is able to access the ELK machine with the private IP 10.2.0.4 by first logging into the JumpBox with the JumpBox's public IP and then through the JumpBox connect to the ELK server. 
+Only the JumpBox machine can accept connections from the Internet. Access to this machine is only allowed from IP address of the administrators local machine. 
+
+Machines within the network can only be accessed by the JumpBox machine. The system admin is able to access the ELK machine with the private IP 10.2.0.4 by first logging into the JumpBox with the JumpBox's public IP and then through the JumpBox connect to the ELK server. 
 
 A summary of the access policies in place can be found in the table below.
 
