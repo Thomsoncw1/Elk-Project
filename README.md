@@ -100,9 +100,9 @@ These Beats allow us to collect the following information from each machine:
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned as a ansible docker container following given steps to run the ansible playbooks: 
 
  1. ssh into the JumpBox using its public IP, fire-up the ansible docker container (if not running already) and enter into the ansible container
- 2. Navigate to the `/etc/ansible` folder 
-
- 3. Update the `hosts` file within that folder to include the webservers internal IPS
+ 2. Proceed to the `/etc/ansible` folder 
+ 4. Once inside the `/etc/ansible` folder, there should be a `hosts` file
+ 5. Run ` nano hosts ` to update the `hosts` file.  Add the following to the `hosts` file: 
 ```
 [webservers]
 10.0.0.5 ansible_python_interpreter=/usr/bin/python3
@@ -111,13 +111,14 @@ In order to use the playbook, you will need to have an Ansible control node alre
 [elk_servers]
 10.2.0.4 ansible_python_interpreter=/usr/bin/python3
 ```
-4. Update the `ansible.cfg` file with the remote username
+5. Save the file and switch to the `ansible.cfg` file
+6. Again, use ` nano ansible.cfg ` to update the `ansible.cfg` file with the remote username
 ```
 remote_user = azadmin
 ```
 5. Copy the [project_playbook.yml](Ansible/project_playbook.yml) file in the `/etc/ansible` folder
 
-6. Execute the following command to run the ELK setup. 
+6. Run the following command to run the ELK setup. 
 ```
 ansible-playbook project_playbook.yml
 ```
