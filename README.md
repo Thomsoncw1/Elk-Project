@@ -45,7 +45,7 @@ The configuration details of each machine may be found below.
 | Loadbalancer | Load Balancer | | N/A | 
 | Web 1     | Web Server| 10.0.0.5   |Ubuntu 18.0.4 LTS |
 | Web 2     | Web Server| 10.1.0.7   |Ubuntu 18.0.4 LTS | 
-| ELK       | ELK Stack | 10.2.0.4   |Ubuntu 18.0.4 LTS |
+| ELK       | ELK Stack | 10.1.0.4   |Ubuntu 18.0.4 LTS |
 
 
 
@@ -55,24 +55,21 @@ The machines on the internal network are not exposed to the public Internet.
 
 Only the JumpBox machine can accept connections from the Internet. Access to this machine is only allowed from IP address of the administrators local machine. 
 
-Machines within the network can only be accessed by the JumpBox machine. The system admin is able to access the ELK machine with the private IP 10.2.0.4 by first logging into the JumpBox with the JumpBox's public IP and then through the JumpBox connect to the ELK server. 
+Machines within the network can only be accessed by the JumpBox machine. The system admin is able to access the ELK machine with the private IP 10.1.0.4 by first logging into the JumpBox with the JumpBox's public IP and then through the JumpBox, deploy a container and from within the container SSH into the ELK server. 
 
 A summary of the access policies in place can be found in the table below.
 
 | Name     | Publicly Accessible | Allowed IP Addresses |
 |----------|---------------------|----------------------|
-| Jump Box | Yes              | Admin's Local Machine IP, VNet Peered N/W|
-| Web 1    | No               |JumpBox IP (10.1.0.4) via SSH |
-| Web 2    | No          |JumpBox IP (10.1.0.4) via SSH |
-| DVMA-VM3 | No          |JumpBox IP (10.1.0.4) via SSH |
-| DVMA-VM4 | No          |JumpBox IP (10.1.0.4) via SSH |
+| Jump Box | Yes              | Admin's Local Machine IP, |
+| Web 1    | No               |JumpBox IP (10.0.0.4) via SSH |
+| Web 2    | No          |JumpBox IP (10.0.0.4) via SSH |
 | ELK    | No         |JumpBox IP (10.1.0.4) via SSH |
-| LB1     | Yes     | public IP and DNS name |
-| LB2     | Yes     | public IP and DNS name |
+| LB1     | Yes     | public IP  |
 
 ### Elk Configuration
 
-Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because using ansible's playbooks which are written in plain english in the YAML format, it is possbile to automate repetative and conplex task like docker installations, system updates and ELK stack installations. Ansible does not need an agent installed on the child nodes and connections are made thorugh ssh or can be scripted through python. 
+Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because by using Ansible's playbooks, which theya re easy to read and understand due to the fact that they are written in YAMl, makes it possible to repeat complicated tasks simultaneously on multiple machines. 
 
 The playbook implements the following tasks:
   * Docker Installation
