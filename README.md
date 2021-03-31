@@ -1,5 +1,4 @@
-# Elk-Project
-Elk-Project 
+
 ## Automated ELK Stack Deployment
 
 The files in this repository were used to configure the network depicted below.
@@ -10,7 +9,6 @@ These files have been tested and used to generate a live ELK deployment on Azure
 
   - [Docker Setup (project_playbook.yml)](Ansible/project_playbook.yml)
   - [Filebeat Setup (filebeat-playbook.yml)](Ansible/filebeat-playbook.yml)
-  - [Metribeat Setup (metribeat-playbook.yml)](Ansible/metricbeat-playbook.yml)
 
 This document contains the following details:
 - Description of the Network Topology
@@ -26,27 +24,26 @@ This document contains the following details:
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
 #### Loadbalancer: 
-Load balancing ensures that the application will be highly available, in addition to restricting public access to the network. A load balancer, with the help of heatlh checks, directs traffic only to healthy instances. A load balancer associated with a scaling policy when placed in front of multiple instances  of the application can also help in mitigating a DDoS attack.  
+Load balancing ensures that the application will be highly available, in addition to restricting public accessability to the network. A load balancer,configured with health probes and load balancing rules ensures and directs traffic only to healthy instances. A load balancer when configured properly can help  to mitigate a DDoS attack.  
 #### JumpBox:
-The main purpose of a jumpbox is to seperate the private network resources access from the public access. It usually has high security measures implemented because in order to access the VMs within the private network a user would log into the jumpbox with the public IP and through the jumpbox, access the private VMs. 
+The main purpose of a jumpbox is to isolate private resources from public access. A Jumpbox normally has high security rules implemented.  This is because to access the private resources, in this case two Virtual Machines (VM's), an user  would  access the JumpBox via the public IP and from within access the private VMs. 
 
 #### ELK Server:
-ELK is set of open source tools (Elasticsearch, Logstash, Kibana) to collect, transform and visualize data. ELK servers make use of beats which are lightweitght agents installed to collect and send data to the ELK stack. Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the data collected from different sources such as through the Filebeat and system metrics through the Metricbeat.
-- Filebeat: It is used as a logging agent to collect logs file and ship it to the ELK server
-- Metricbeat: This is use to collect various system and service metrics. 
+ Elasticsearch, Logstash, Kibana (ELK) are open source utilities for various purposes.  They are use to conver, compile and visualize data. ELK servers utilize beats.  Beats are open source carriers that are installed on the ELK server to collect and send data for an user to analyze.   For this project, Metricbeats and Filebeats were used to monitor and capture data to analyze.  
+ - Metricbeat:  Used to capture  various system and service metrics such as CPU usage and memory  
+- Filebeat: Used to capture log data from different systems and forwards them to the ELK server for analysis
+
 
 #### Network Configurations:
 The configuration details of each machine may be found below.
 
 
-| Name     | Function | IP Address | Operating System |
-|----------|----------|------------|------------------|
-| JumpBox | Gateway  | 10.1.0.4   | Ubuntu 18.0.4 LTS|
-| Web 1     | Web Server| 10.1.0.7 |Ubuntu 18.0.4 LTS |
-| Web 2     | Web Server| 10.1.0.8 |Ubuntu 18.0.4 LTS |
-| DVMA-VM3    | Web Server | 10.1.0.9| Ubuntu 18.0.4 LTS |
-| DVMA-VM4    | Web Server| 10.1.0.12 |Ubuntu 18.0.4 LTS|
-| ELK    | ELK Stack | 10.2.0.4 |Ubuntu 18.0.4 LTS |
+| Name      | Function  | IP Address | Operating System |
+|---------- |---------- |------------|------------------|
+| JumpBox   | Gateway   | 10.0.0.4   |Ubuntu 18.0.4 LTS|
+| Web 1     | Web Server| 10.0.0.5   |Ubuntu 18.0.4 LTS |
+| Web 2     | Web Server| 10.1.0.7   |Ubuntu 18.0.4 LTS | 
+| ELK       | ELK Stack | 10.2.0.4   |Ubuntu 18.0.4 LTS |
 
 
 
