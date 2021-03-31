@@ -72,10 +72,10 @@ A summary of the access policies in place can be found in the table below.
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because by using Ansible's playbooks, which theya re easy to read and understand due to the fact that they are written in YAMl, makes it possible to repeat complicated tasks simultaneously on multiple machines. 
 
 The playbook implements the following tasks:
-  * Docker Installation
-  * Python and Docker python library 
-  * Enabling the docker service at start 
-  * Downloading and running the elk docker container. 
+  * Installation of Docker 
+  * Download elk Image
+  * Enable docker service 
+  * Download and start docker elk container  
  
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
@@ -85,29 +85,28 @@ The following screenshot displays the result of running `docker ps` after succes
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-- DVMA-VM3 at IP 10.1.0.9
-- DVMA-VM4 at IP 10.1.0.12
+- Web-1 with IP 10.0.0.5
+- Web-2 with IP 10.0.07
 
 The following Beats have been installed on these machines:
   * Filebeat
   * Metricbeat
 
 These Beats allow us to collect the following information from each machine:
-  * Filebeat: This is a logging agent which is used to collect log files and send the data to the ELK server. When specified a path like ` var/log/*.lgo* ` in the filebeat config file, filebeat collects logs files generated within that folder path and sends the logs to the elk server for processing. Unlike Logstash, filebeat is used for basic processing and not for advanced usage. 
-  * Metricbeat: The metricbeat docker module helps to collect metrics related to docker containers such as CPU usage, DiskIO, memory and number of containers runnings.  
-
+  * Filebeat: Filebeat is used to collect log files and forward the data to the ELK server. Filebeats, we use to collect and ship logs files of a system. 
+  * Metricbeat: We use metricbeats to capture various system and service metrics such as CPU usage and memory  
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned as a ansible docker container following given steps to run the ansible playbooks: 
 
- 1. ssh to the jump box, start the ansible docker container (if not running already) and enter into the ansible container
- 2. Navigate to the `/etc/ansible` folder
+ 1. ssh into the JumpBox using its public IP, fire-up the ansible docker container (if not running already) and enter into the ansible container
+ 2. Navigate to the `/etc/ansible` folder 
 
  3. Update the `hosts` file within that folder to include the webservers internal IPS
 ```
 [webservers]
-10.1.0.9 ansible_python_interpreter=/usr/bin/python3
-10.1.0.12 ansible_python_interpreter=/usr/bin/python3
+10.0.0.5 ansible_python_interpreter=/usr/bin/python3
+10.0.0.7 ansible_python_interpreter=/usr/bin/python3
 
 [elk_servers]
 10.2.0.4 ansible_python_interpreter=/usr/bin/python3
@@ -118,21 +117,12 @@ remote_user = azadmin
 ```
 5. Copy the [project_playbook.yml](Ansible/project_playbook.yml) file in the `/etc/ansible` folder
 
-6. Use the following command to run the ELK setup. 
+6. Execute the following command to run the ELK setup. 
 ```
 ansible-playbook project_playbook.yml
 ```
-7. After the installation have been completed, navigate to the `http://<<load_balancer_public_ip>>/app/kibana` to verify the installation. The following dashboard should be displayed. 
-
+7. After the installation have been completed, navigate to the `http://<<load_balancer_public_ip>>/app/kibana` to verify the installation. If successful, you should be able to see a webpage that looks like this: 
 ![kibana-dashboard](Diagrams/kibana-dashboard.png)
 
-8. Copy the [filebeat playbook]() and the [metricbeat playbook]() in the `/etc/ansible` folder and use the following commands to run the playbooks. 
-Filebeat playbook
-```
-ansible-playbook install-filebeat-playbook.yml
-```
-Metricbeat playbook
-```
-ansible-playbook install-metricbeat-playbook.yml
-```
+
  
