@@ -1,0 +1,36 @@
+# This playbook is within the install-filebeat role and is used 
+# to download and install filebeat in the remote (elk) server
+
+  - name: Download and install filebeat
+    hosts: webservers
+    become: True
+    tasks:
+
+    # Step 1: Download the filebeat file
+      - name: Download filebeat
+        command: curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.10.2-amd64.deb
+
+    # Step 2: install the downloaded .deb file
+      - name: Install the filebeat*.deb file
+        command: dpkg -i filebeat-7.10.2-amd64.deb
+
+    # Step 3: Copy the configuration file that was modified and moved to the role's file directory
+      - name: Copy the configuration file to the remote (elk) server
+        copy: 
+          src: filebeat-config.yml
+          dest: /etc/filebeat/filebeat-config.yml
+
+    # Step 4: Series of filebeat installations steps
+      - name: filebeat modules enable system
+        command: filebeat --modules system
+
+      - name: filebeat setup
+        command: filebeat setup -e
+
+      - name: service filebeat start
+        command: sudo service filebeat start
+
+      - name: enable filebeat service on boot
+        systemd:
+          name: filebeat
+          enabled: yes   
