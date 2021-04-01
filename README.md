@@ -46,7 +46,7 @@ The configuration details of each machine may be found below.
 | Loadbalancer | Load Balancer | | N/A | 
 | Web 1     | Web Server| 10.0.0.5   |Ubuntu 18.0.4 LTS |
 | Web 2     | Web Server| 10.1.0.7   |Ubuntu 18.0.4 LTS | 
-| ELK       | ELK Stack | 10.1.0.4   |Ubuntu 18.0.4 LTS |
+| ELK       | ELK Stack | 10.1.0.4 / 40.79.74.120  |Ubuntu 18.0.4 LTS |
 
 
 
@@ -65,7 +65,7 @@ A summary of the access policies in place can be found in the table below.
 | Jump Box | Yes              | Admin's Local Machine IP, |
 | Web 1    | No               |JumpBox IP (10.0.0.4) via SSH |
 | Web 2    | No          |JumpBox IP (10.0.0.4) via SSH |
-| ELK    | No         |JumpBox IP (10.1.0.4) via SSH |
+| ELK    | yes        |JumpBox IP (10.1.0.4) via SSH |
 | LB1     | Yes     | public IP  |
 
 ### Elk Configuration
@@ -110,7 +110,7 @@ In order to use the playbook, you will need to have an Ansible control node alre
 10.0.0.7 ansible_python_interpreter=/usr/bin/python3
 
 [elk_servers]
-10.2.0.4 ansible_python_interpreter=/usr/bin/python3
+10.1.0.4 ansible_python_interpreter=/usr/bin/python3
 ```
 5. Save the file and switch to the `ansible.cfg` file
 6. Again, use ` nano ansible.cfg ` to update the `ansible.cfg` file with the remote username
