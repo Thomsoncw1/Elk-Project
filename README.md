@@ -81,7 +81,7 @@ The playbook implements the following tasks:
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![docker ps -a](Diagrams/docker-ps.png)
+![docker ps -a](https://github.com/Thomsoncw1/Elk-Project/blob/main/docker_ps_output.PNG)
 
 
 ### Target Machines & Beats
@@ -117,7 +117,7 @@ In order to use the playbook, you will need to have an Ansible control node alre
 ```
 remote_user = azadmin
 ```
-5. Copy the [project_playbook.yml](Ansible/project_playbook.yml) file in the `/etc/ansible` folder
+5. Copy the [filebeat-playbook.yml](https://github.com/Thomsoncw1/Elk-Project/blob/main/filebeat-playbook.yml) file in the `/etc/ansible` folder
 
 6. Run the following command to run the ELK setup. 
 ```
