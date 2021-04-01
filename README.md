@@ -123,8 +123,8 @@ remote_user = azadmin
 ```
 ansible-playbook project_playbook.yml
 ```
-7. After the installation have been completed, navigate to the `http://<<load_balancer_public_ip>>/app/kibana` to verify the installation. If successful, you should be able to see a webpage that looks like this: 
-![kibana-dashboard](Diagrams/kibana-dashboard.png)
+7. After the installation have been completed, navigate to the `http://<<elk_server_public_ip>>/app/kibana` to verify the installation. If successful, you should be able to see a webpage that looks like this: 
+![kibana-dashboard](https://github.com/Thomsoncw1/Elk-Project/blob/main/Kibana_dashboard_output.PNG)
 
 
  
