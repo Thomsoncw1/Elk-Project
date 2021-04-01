@@ -1,0 +1,36 @@
+# This playbook is within the install-metricbeat role and is used 
+# to download and install metricbeat in the remote (elk) server
+
+  - name: Download and install metricbeat
+    hosts: webservers
+    become: True
+    tasks:
+
+    # Step 1: Download the metricbeat file
+      - name: Download metricbeat
+        command: curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.6.1-amd64.deb
+
+    # Step 2: install the downloaded .deb file
+      - name: Install the metricbeat*.deb file
+        command: sudo dpkg -i metricbeat-7.6.1-amd64.deb
+
+    # Step 3: Copy the configuration file that was modified and moved to the role's file directory
+      - name: Copy the configuration file to the remote (elk) server
+        copy: 
+          src: /etc/ansible/files/metricbeat-config.yml
+          dest: /etc/metricbeat/metricbeat-config.yml
+
+    # Step 4: Series of filebeat installations steps
+      - name: metricbeat modules enable system
+        command: sudo metricbeat modules enable docker
+
+      - name: metricbeat setup
+        command: sudo metricbeat setup
+
+      - name: service metricbeat start
+        command: sudo service metricbeat start
+
+      - name: enable metricbeat service on boot
+        systemd:
+          name: metricbeat
+          enabled: yes   
